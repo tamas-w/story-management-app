@@ -19,7 +19,7 @@ export class User extends BaseEntity {
   lastname: string;
 
   @Column({ default: true })
-  active: boolean;
+  isActive: boolean;
 
   @CreateDateColumn()
   createdAt: Date;

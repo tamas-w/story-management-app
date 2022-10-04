@@ -4,6 +4,7 @@ import cors from "cors";
 import * as dotenv from "dotenv";
 import { AppDataSource } from "../data_source";
 import userRoutes from "./routes/user.routes";
+import taskRoutes from "./routes/task.routes";
 
 export class Server {
   public app: express.Application;
@@ -27,6 +28,7 @@ export class Server {
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use("/api", userRoutes);
+    this.app.use("/api", taskRoutes);
 
     dotenv.config();
   }
@@ -43,7 +45,6 @@ export class Server {
     });
   }
   private dbConnection() {
-    // If the order does not matter -> async ... await
     try {
       AppDataSource.initialize();
       this.logger.success("Database connected");
